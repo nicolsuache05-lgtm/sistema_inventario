@@ -14,7 +14,7 @@ class ProveedoresController extends Controller
     {
         $proveedores = Proveedores::latest()->get();
 
-        return view('admin.proveedores.forproveedores', compact('proveedores'));
+        return view('admin.proveedores.listadoproveedores', compact('proveedores'));
     }
 
     /**

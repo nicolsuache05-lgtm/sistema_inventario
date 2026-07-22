@@ -32,4 +32,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/formusuarios', [Usuariocontroller::class, 'store'])->name('usuarios.store');
     Route::get('/formproveedores',  [ProveedoresController::class, 'create'])->name('proveedores.create');
     Route::post('/formproveedores', [ProveedoresController::class, 'store'])->name('proveedores.store');
+    Route::get('/usuarios', [Usuariocontroller::class, 'index'])->name('usuarios.index');
+    Route::get('/proveedores', [ProveedoresController::class, 'index'])->name('proveedores.index');
+    Route::post('/listausuarios',[UsuarioController::class, 'update' ])->name('listausuarios.update');
 });
+
+

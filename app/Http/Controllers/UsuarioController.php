@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,6 +15,9 @@ class Usuariocontroller extends Controller
     public function index()
     {
         //
+        $usuarios = User::with('role')->latest()->get();
+        $roles = Role::all();
+        return view('admin.usuarios.listausuarios', compact('usuarios', 'roles'));
     }
 
     /**
@@ -71,7 +75,14 @@ class Usuariocontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $usuario->name = $request->input('name');
+        $usuario->email = $request->input('email');
+        $usuario->role_id = $request->input('role');
+        $usuario->estado = $request->input('estado');
+        $usuario->save();
+
+        return back()->with('success', 'Usuario actualizado exitosamente');
     }
 
     /**
